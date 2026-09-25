@@ -582,257 +582,88 @@ a {
 }
 
 
-/* =========================
-   PROJECT
-========================= */
+/* PROJECTS */
 
-.project-card {
-
+.projects {
   display: grid;
-
-  grid-template-columns: 1.25fr .75fr;
-
-  overflow: hidden;
-
-  border-radius: 30px;
-
-  background: #e4e7d9;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
-.project-image {
-
-  min-height: 560px;
-
+.project {
+  min-height: 360px;
+  padding: 30px;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,.075),
+    rgba(255,255,255,.025)
+  );
+  transition: .4s ease;
   position: relative;
+  overflow: hidden;
+}
+
+.project:hover {
+  transform: translateY(-10px);
+  border-color: rgba(119,229,155,.45);
+  box-shadow: 0 25px 60px rgba(0,0,0,.3);
+}
+
+/* PROJECT AVATAR */
+
+.project-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 22px;
 
   display: flex;
-
+  align-items: center;
   justify-content: center;
 
-  align-items: center;
+  font-size: 34px;
 
-  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    rgba(119,229,155,.22),
+    rgba(119,229,155,.05)
+  );
 
-  background:
-    radial-gradient(circle at 50% 20%, #d7e7a8, transparent 30%),
-    linear-gradient(135deg,#92ad7e,#315a49);
-}
+  border: 1px solid rgba(119,229,155,.25);
 
-.truck-art {
-
-  width: 55%;
-
-  height: 65%;
-
-  position: relative;
-
-  border-radius: 20px 20px 12px 12px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #f4ce69 0 20%,
-      #db5946 20% 42%,
-      #16a0a6 42% 70%,
-      #17606a 70%
-    );
+  margin-bottom: 25px;
 
   box-shadow:
-    0 35px 50px #173b2e40;
-
-  border: 8px solid #eee1b1;
-
-  transform: perspective(800px) rotateY(-7deg);
-
-  transition: .5s;
-}
-
-.project-card:hover .truck-art {
-
-  transform:
-    perspective(800px)
-    rotateY(0deg)
-    translateY(-10px)
-    scale(1.03);
-
-}
-
-.truck-title {
-
-  color: white;
-
-  text-align: center;
-
-  font-family: "Playfair Display", serif;
-
-  font-size: clamp(30px,4vw,55px);
-
-  line-height: .75;
-
-  padding-top: 50px;
-
-  text-shadow: 3px 3px #173b2e;
-}
-
-.truck-title strong {
-
-  display: block;
-
-  color: #f6dc7c;
-
-  font-size: 1.25em;
-}
-
-.truck-line {
-
-  height: 10px;
-
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #f5dc7d 0 20px,
-      #d6423c 20px 40px
-    );
-
-  margin-top: 50px;
-}
-
-.truck-symbol {
-
-  text-align: center;
-
-  font-size: 70px;
-
-  color: #f7d86e;
-
-  text-shadow: 3px 3px #173b2e;
-}
-
-.truck-wheel {
-
-  width: 80px;
-  height: 80px;
-
-  border-radius: 50%;
-
-  background: #151b19;
-
-  border: 13px solid #7e8580;
-
-  position: absolute;
-
-  bottom: -35px;
-}
-
-.wheel-one {
-  left: 12%;
-}
-
-.wheel-two {
-  right: 12%;
+    0 10px 30px rgba(0,0,0,.2);
 }
 
 .project-number {
-
-  position: absolute;
-
-  top: 25px;
-  right: 30px;
-
-  color: white;
-
+  color: var(--green);
   font-size: 12px;
-
   letter-spacing: 2px;
+  font-weight: 600;
 }
 
-.project-info {
-
-  padding: 65px 50px;
-
-  display: flex;
-
-  justify-content: center;
-
-  flex-direction: column;
+.project h3 {
+  font-family: "Brush Script MT", "Segoe Script", cursive;
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 12px 0 15px;
+  color: #f5fff8;
 }
 
-.project-info > small {
-
-  color: #718078;
-
-  font-size: 10px;
-
-  letter-spacing: 2px;
-
-  font-weight: 700;
-}
-
-.project-info h3 {
-
-  font-family: "Playfair Display", serif;
-
-  font-size: 53px;
-
-  line-height: .95;
-
-  margin: 20px 0;
-}
-
-.project-info h3 i {
-
-  color: #79995f;
-
-}
-
-.project-info p {
-
-  color: #68756e;
-
-  line-height: 1.7;
-
-  margin-bottom: 20px;
-}
-
-.tags {
-
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 7px;
-
-  margin-bottom: 30px;
-}
-
-.tags span {
-
-  border: 1px solid #173b2e25;
-
-  padding: 8px 12px;
-
-  border-radius: 20px;
-
-  font-size: 10px;
-
-  font-weight: 700;
+.project p {
+  color: #aebdb4;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
 }
 
 .project-link {
-
-  font-size: 13px;
-
-  font-weight: 700;
+  display: none;
 }
-
-.project-link span {
-
-  margin-left: 12px;
-
-  font-size: 18px;
-}
-
-
 /* =========================
    ABOUT
 ========================= */

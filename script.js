@@ -1,11 +1,141 @@
-const header=document.getElementById('header'),progress=document.getElementById('progress');
-const links=document.getElementById('links'),hamb=document.getElementById('hamb');
-function scrollUI(){const y=scrollY,d=document.documentElement;header.classList.toggle('scrolled',y>10);progress.style.width=(y/(d.scrollHeight-d.clientHeight)*100)+'%';document.querySelectorAll('main section[id]').forEach(s=>{if(y>=s.offsetTop-150){document.querySelectorAll('.links a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+s.id));}})}
-addEventListener('scroll',scrollUI,{passive:true});scrollUI();
-hamb.onclick=()=>{links.classList.toggle('open');hamb.textContent=links.classList.contains('open')?'×':'☰'};
-document.querySelectorAll('.links a').forEach(a=>a.onclick=()=>links.classList.remove('open'));
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
-document.getElementById('year').textContent=new Date().getFullYear();
-document.querySelectorAll('a[href="#"]').forEach(a=>a.onclick=e=>e.preventDefault());
-document.getElementById('form').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target),name=f.get('name'),email=f.get('email'),msg=f.get('message');const to='your-email@example.com';const subject=encodeURIComponent('Portfolio enquiry from '+name);const body=encodeURIComponent('Name: '+name+'\nEmail: '+email+'\n\n'+msg);document.getElementById('note').textContent='Opening your email app…';location.href=`mailto:${to}?subject=${subject}&body=${body}`;});
+/* =========================
+   MOBILE MENU
+========================= */
+
+const menuBtn = document.getElementById("menuBtn");
+const nav = document.getElementById("nav");
+
+menuBtn.addEventListener("click", () => {
+
+  if (nav.style.display === "flex") {
+    nav.style.display = "none";
+  } else {
+    nav.style.display = "flex";
+  }
+
+});
+
+
+/* =========================
+   CLOSE MENU AFTER CLICK
+========================= */
+
+const navLinks = document.querySelectorAll("#nav a");
+
+navLinks.forEach(link => {
+
+  link.addEventListener("click", () => {
+
+    if (window.innerWidth <= 850) {
+      nav.style.display = "none";
+    }
+
+  });
+
+});
+
+
+/* =========================
+   CUSTOM CURSOR
+========================= */
+
+const cursor = document.querySelector(".cursor");
+const ring = document.querySelector(".cursor-ring");
+
+document.addEventListener("mousemove", (e) => {
+
+  cursor.style.left = e.clientX + "px";
+  cursor.style.top = e.clientY + "px";
+
+  ring.style.left = e.clientX + "px";
+  ring.style.top = e.clientY + "px";
+
+});
+
+
+/* =========================
+   HOVER CURSOR
+========================= */
+
+const clickable = document.querySelectorAll("a, button");
+
+clickable.forEach(element => {
+
+  element.addEventListener("mouseenter", () => {
+
+    ring.style.width = "55px";
+    ring.style.height = "55px";
+
+  });
+
+  element.addEventListener("mouseleave", () => {
+
+    ring.style.width = "35px";
+    ring.style.height = "35px";
+
+  });
+
+});
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const revealElements = document.querySelectorAll(
+  ".project-card, .about-box, .quote-box, .service, .contact"
+);
+
+const observer = new IntersectionObserver(
+
+  entries => {
+
+    entries.forEach(entry => {
+
+      if (entry.isIntersecting) {
+
+        entry.target.classList.add("show");
+
+      }
+
+    });
+
+  },
+
+  {
+    threshold: 0.15
+  }
+
+);
+
+revealElements.forEach(element => {
+
+  element.classList.add("reveal");
+
+  observer.observe(element);
+
+});
+
+
+/* =========================
+   PARALLAX HERO
+========================= */
+
+const heroImage = document.querySelector(".image-frame");
+const circle = document.querySelector(".circle-back");
+
+window.addEventListener("scroll", () => {
+
+  const scroll = window.scrollY;
+
+  if (scroll < window.innerHeight) {
+
+    heroImage.style.transform =
+      `rotate(3deg) translateY(${scroll * 0.08}px)`;
+
+    circle.style.transform =
+      `translateY(${scroll * 0.04}px)`;
+
+  }
+
+});
